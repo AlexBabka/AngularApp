@@ -1,14 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardComponent} from './dashboard.component';
-import {JobsComponent} from './jobs.component';
-import {JobDetailComponent} from './job-detail.component';
+import {JobsComponent} from './jobs/jobs.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'detail/:name', component: JobDetailComponent},
+  {path: '', redirectTo: '/jobs', pathMatch: 'full'},
   {path: 'jobs', component: JobsComponent}
 ];
 

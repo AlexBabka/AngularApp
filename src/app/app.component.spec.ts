@@ -1,6 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 
-import { JobsComponent } from './jobs.component';
+import { JobsComponent } from './jobs/jobs.component';
 
 describe('JobsComponent', () => {
   beforeEach(async(() => {

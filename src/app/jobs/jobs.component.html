@@ -1,0 +1,42 @@
+<div>
+  <h1>
+    {{title}}
+  </h1>
+
+  <div>
+    <input
+      type='text'
+      style='padding:8px;margin:15px auto;width:30%;'
+      placeholder='Type to filter by name...'
+      (keyup)='updateFilter($event)'
+    />
+
+    <ngx-datatable class="material" style="min-height:460px"
+                   [rows]="jobs"
+                   [columnMode]="'force'"
+                   [headerHeight]="50"
+                   [footerHeight]="0"
+                   [rowHeight]="50"
+                   [trackByProp]="state"
+                   [scrollbarV]="true">
+      <ngx-datatable-column name="Name"></ngx-datatable-column>
+      <ngx-datatable-column name="Description"></ngx-datatable-column>
+      <ngx-datatable-column name="Trigger Time" prop="time"></ngx-datatable-column>
+      <ngx-datatable-column name="State"></ngx-datatable-column>
+
+      <ngx-datatable-column name="Actions" sortable="false" prop="actions">
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          {{column.name}}
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <button md-raised-button *ngIf="row.state=='Active'" (click)="pauseJob(row.name)">
+            <img class="png-icon" src="assets/pause.png" style="width: 24px; height: 24px;">
+          </button>
+          <button md-raised-button *ngIf="row.state=='Paused'" (click)="resumeJob(row.name)">
+            <img class="png-icon" src="assets/start.png" style="width: 48px; height: 24px;">
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

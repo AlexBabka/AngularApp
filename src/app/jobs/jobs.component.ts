@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class JobsComponent implements OnInit {
   title = 'Job List';
   jobs: Job[];
+  jobCache: Job[];
   selectedJob: Job;
 
   constructor(private jobService: JobService,
@@ -27,10 +28,31 @@ export class JobsComponent implements OnInit {
   }
 
   getJobs(): void {
-    this.jobService.getJobs().then(jobs => this.jobs = jobs);
+    this.jobService.getJobs().then(jobs => {
+      this.jobs = jobs;
+      this.jobCache = [...jobs];
+    });
   }
 
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedJob.name]);
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.jobCache.filter(function (d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.jobs = temp;
+  }
+
+  pauseJob(name) {
+    const job = this.jobs.find(job => job.name == name);
+    job.state = 'Paused';
+  }
+
+  resumeJob(name) {
+    const job = this.jobs.find(job => job.name == name);
+    job.state = 'Active';
   }
 }
