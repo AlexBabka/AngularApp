@@ -1,12 +1,16 @@
 # AngularPoc
 
-#Prerequisites
+Simple AngularJS app to check the possibility of building single-page application 
+capable of displaying jobs in data grid and control them (start/pause) from UI
+
+# Prerequisites
+
 Install NodeJS v6.11.0. 
 
 # Run application
 
 Open command-line in the root folder of the project and execute "npm install".
-It will download all the dependencies in the folder "node_modules". Excluded from git by .gitignore.
+It will download all the dependencies in the folder "node_modules", excluded from git by .gitignore.
 After that you can run local development server with "npm start".
 You can load app in browser by url "localhost:4200"
 
